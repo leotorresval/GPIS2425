@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.mycompany.gpruebas2425.ValidacionCedulaTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! - in com.mycompany.gpruebas2425.ValidacionCedulaTest
+cedulaTerminadaEnCero  Time elapsed: 0.016 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at com.mycompany.gpruebas2425.ValidacionCedulaTest.cedulaTerminadaEnCero(ValidacionCedulaTest.java:66)
+

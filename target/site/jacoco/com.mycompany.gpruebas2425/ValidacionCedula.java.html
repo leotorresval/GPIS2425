@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidacionCedula.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GPruebas2425</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.gpruebas2425</a> &gt; <span class="el_source">ValidacionCedula.java</span></div><h1>ValidacionCedula.java</h1><pre class="source lang-java linenums">package com.mycompany.gpruebas2425;
+
+public class ValidacionCedula {
+
+    private ValidacionCedula() {
+    }
+
+    
+    public static boolean validar(String cedula) {
+        // Validar que la cédula solo contenga números
+<span class="pc bpc" id="L11" title="1 of 2 branches missed.">        if (!cedula.matches(&quot;\\d+&quot;)) {</span>
+<span class="nc" id="L12">            return false;</span>
+        }
+        // Validar longitud de la cédula
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if (cedula.length() != 10) {</span>
+<span class="nc" id="L16">            return false;</span>
+        }
+
+        // Validar que los primeros dos dígitos estén entre 01 y 24 (provincias)
+<span class="fc" id="L20">        int provincia = Integer.parseInt(cedula.substring(0, 2));</span>
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">        if (provincia &lt; 1 || provincia &gt; 24) {</span>
+<span class="nc" id="L22">            return false;</span>
+        }
+
+        // Validar que el tercer dígito no sea mayor a 6
+<span class="fc" id="L26">        int tercerDigito = Integer.parseInt(cedula.substring(2, 3));</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (tercerDigito &gt; 6) {</span>
+<span class="fc" id="L28">            return false;</span>
+        }
+
+        // Algoritmo para validar el último dígito
+<span class="fc" id="L32">        int[] coeficientes = {2, 1, 2, 1, 2, 1, 2, 1, 2};</span>
+<span class="fc" id="L33">        int suma = 0;</span>
+
+        // Recorrer los primeros 9 dígitos
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (int i = 0; i &lt; 9; i++) {</span>
+<span class="fc" id="L37">            int digito = Integer.parseInt(cedula.substring(i, i + 1)) * coeficientes[i];</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (digito &gt;= 10) {</span>
+<span class="fc" id="L39">                digito -= 9;</span>
+            }
+<span class="fc" id="L41">            suma += digito;</span>
+        }
+
+        // Obtener el último dígito de la cédula
+<span class="fc" id="L45">        int ultimoDigito = Integer.parseInt(cedula.substring(9, 10));</span>
+
+        // Comparar la suma con el último dígito
+<span class="fc" id="L48">        int digitoVerificador = 10 - (suma % 10);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (digitoVerificador == 10) {</span>
+<span class="nc" id="L50">            digitoVerificador = 0;</span>
+        }
+
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        return digitoVerificador == ultimoDigito;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
